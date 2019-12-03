@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F023938B2200E7A942 /* Extensions+UIView.swift */; };
+		0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */; };
+		0A37F0AB23969E8F00B6DB7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F0AA23969E8F00B6DB7C /* CardView.swift */; };
 		0ADE9CF32391E85D00563B0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE9CF22391E85D00563B0B /* AppDelegate.swift */; };
 		0ADE9CF52391E85D00563B0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE9CF42391E85D00563B0B /* SceneDelegate.swift */; };
 		0ADE9CF72391E85D00563B0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE9CF62391E85D00563B0B /* ViewController.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A1359F023938B2200E7A942 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
+		0A37F0AA23969E8F00B6DB7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0ADE9CEF2391E85D00563B0B /* Spartans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spartans.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADE9CF22391E85D00563B0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ADE9CF42391E85D00563B0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +45,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1359EF23938AF600E7A942 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A1359F023938B2200E7A942 /* Extensions+UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0A1359F22393911E00E7A942 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */,
+				0A37F0AA23969E8F00B6DB7C /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0ADE9CE62391E85D00563B0B = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +81,8 @@
 		0ADE9CF12391E85D00563B0B /* Spartans */ = {
 			isa = PBXGroup;
 			children = (
+				0A1359F22393911E00E7A942 /* Views */,
+				0A1359EF23938AF600E7A942 /* Extensions */,
 				0ADE9CF22391E85D00563B0B /* AppDelegate.swift */,
 				0ADE9CF42391E85D00563B0B /* SceneDelegate.swift */,
 				0ADE9CF62391E85D00563B0B /* ViewController.swift */,
@@ -141,10 +166,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A37F0AB23969E8F00B6DB7C /* CardView.swift in Sources */,
 				0ADE9D072391E8F500563B0B /* BaseTabBarController.swift in Sources */,
+				0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */,
 				0ADE9CF72391E85D00563B0B /* ViewController.swift in Sources */,
 				0ADE9CF32391E85D00563B0B /* AppDelegate.swift in Sources */,
 				0ADE9CF52391E85D00563B0B /* SceneDelegate.swift in Sources */,
+				0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
