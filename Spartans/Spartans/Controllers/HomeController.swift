@@ -15,8 +15,8 @@ class HomeController: UIViewController {
     
     let cardViewModels: [CardViewModel] = {
         let producers = [
-            User(name: "Kelly", age: 23, activitty: "Endurance Training", imageName: "kelly3"),
-            User(name: "Jane", age: 18, activitty: "Powerlifting", imageName: "lady4c")
+            User(name: "Kelly", age: 23, activitty: "Endurance Training", imageNames: ["kelly1", "kelly2", "kelly3"]),
+            User(name: "Jane", age: 18, activitty: "Powerlifting", imageNames: ["jane1, jane2, jane3"])
         ] as [ProduceCardViewModel]
         
         let viewModels = producers.map({return $0.toCardViewModel()})

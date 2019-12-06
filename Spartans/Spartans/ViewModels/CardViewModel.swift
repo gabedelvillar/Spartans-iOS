@@ -12,11 +12,36 @@ protocol ProduceCardViewModel {
     func toCardViewModel() -> CardViewModel
 }
 
-struct CardViewModel {
+class CardViewModel {
     // we'll define the properties that our view will display/render out
-    let imageName: String
+    let imageNames: [String]
     let attributedString: NSAttributedString
     let textAlignment: NSTextAlignment
+    
+    init(imageNames: [String], attributedString: NSAttributedString, textAlignment: NSTextAlignment) {
+        self.imageNames = imageNames
+        self.attributedString = attributedString
+        self.textAlignment = textAlignment
+    }
+    
+    fileprivate var imageIndex = 0{
+        didSet {
+            let imageName = imageNames[imageIndex]
+            let image = UIImage(named: imageName)
+            imageIndexObserver?(imageIndex, image ?? UIImage())
+        }
+    }
+    // reactive programming - you want to expose a propery on your view model object such that you can notify an external class such as your cardview of all the chnages of your views state
+    var imageIndexObserver: ((Int, UIImage?) -> ())?
+    
+    func advanceToNextPhoto(){
+        
+        imageIndex = min(imageIndex + 1, imageNames.count - 1)
+    }
+    
+    func goToPreviousPhoto(){
+        imageIndex = max(0, imageIndex - 1)
+    }
 }
 
 
