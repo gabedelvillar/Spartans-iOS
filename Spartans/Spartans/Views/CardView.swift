@@ -10,9 +10,18 @@ import UIKit
 
 class CardView: UIView {
     
+    var cardViewModel: CardViewModel! {
+        didSet {
+            imageView.image = UIImage(named: cardViewModel.imageName)
+            informationLabel.attributedText = cardViewModel.attributedString
+            informationLabel.textAlignment = cardViewModel.textAlignment
+        }
+    }
+    
+    
+    // encapsulation
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly3"))
-    
-    
+    fileprivate let informationLabel = UILabel()
     // MARK:- Configurations
     fileprivate let threshHold: CGFloat = 100
 
@@ -22,9 +31,17 @@ class CardView: UIView {
         // custom drawing code
         layer.cornerRadius = 10
         clipsToBounds = true
+        
+        imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
         
+        addSubview(informationLabel)
+        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+        informationLabel.text = "TEST NAME TEST NAME AGE"
+        informationLabel.textColor = .white
+        informationLabel.font = UIFont.systemFont(ofSize: 34, weight: .heavy)
+        informationLabel.numberOfLines = 0
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         
         addGestureRecognizer(panGesture)
@@ -62,11 +79,11 @@ class CardView: UIView {
         let shouldDismissCard = gesture.translation(in: nil).x > threshHold
         
         
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
             
             if shouldDismissCard {
                 
-                self.frame = CGRect(x: 1000, y: 0, width: self.frame.width, height: self.frame.height)
+                self.frame = CGRect(x: 600, y: 0, width: self.frame.width, height: self.frame.height)
                 
 
                 
@@ -75,7 +92,10 @@ class CardView: UIView {
             }
             
         }) { (_) in
-            self.frame = CGRect(x: 0, y: 0, width: self.superview!.frame.width, height: self.superview!.frame.height)
+            if shouldDismissCard{
+                self.removeFromSuperview()
+            }
+            
         }
     }
     

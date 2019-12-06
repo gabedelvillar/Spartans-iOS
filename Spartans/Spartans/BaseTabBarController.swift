@@ -14,7 +14,7 @@ class BaseTabBarController: UITabBarController {
         
         viewControllers = [
             
-            createNavController(viewController: ViewController(), title: "Spartans"),
+            createNavController(viewController: HomeController(), title: "Spartans"),
             createNavController(viewController: UIViewController(), title: "Messages"),
             createNavController(viewController: UIViewController(), title: "Activity"),
             createNavController(viewController: UIViewController(), title: "Settings")
