@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F023938B2200E7A942 /* Extensions+UIView.swift */; };
 		0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */; };
 		0A37F0AB23969E8F00B6DB7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F0AA23969E8F00B6DB7C /* CardView.swift */; };
+		0A3FCDD6239B231C00BED21A /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FCDD5239B231C00BED21A /* RegistrationViewModel.swift */; };
+		0A3FCDD8239B2CBE00BED21A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FCDD7239B2CBE00BED21A /* GoogleService-Info.plist */; };
+		0A3FCDDA239B45B400BED21A /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FCDD9239B45B400BED21A /* Bindable.swift */; };
 		0A5BA4BD2396D7A000AE06DE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5BA4BC2396D7A000AE06DE /* User.swift */; };
 		0A5BA4C12396DF1A00AE06DE /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5BA4C02396DF1A00AE06DE /* CardViewModel.swift */; };
 		0ADE9CF32391E85D00563B0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE9CF22391E85D00563B0B /* AppDelegate.swift */; };
@@ -19,12 +22,18 @@
 		0ADE9CFC2391E85E00563B0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE9CFB2391E85E00563B0B /* Assets.xcassets */; };
 		0ADE9CFF2391E85E00563B0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE9CFD2391E85E00563B0B /* LaunchScreen.storyboard */; };
 		0ADE9D072391E8F500563B0B /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */; };
+		0AF62FAC239ADBA900096E79 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF62FAB239ADBA900096E79 /* RegistrationController.swift */; };
+		0AF62FAE239AE4C300096E79 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF62FAD239AE4C300096E79 /* CustomTextField.swift */; };
+		58A2977C3DAC376D5649F8B0 /* Pods_Spartans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BD553399BF71D497ADECEF /* Pods_Spartans.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A1359F023938B2200E7A942 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
 		0A37F0AA23969E8F00B6DB7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0A3FCDD5239B231C00BED21A /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		0A3FCDD7239B2CBE00BED21A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0A3FCDD9239B45B400BED21A /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		0A5BA4BC2396D7A000AE06DE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A5BA4C02396DF1A00AE06DE /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		0ADE9CEF2391E85D00563B0B /* Spartans.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spartans.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +45,11 @@
 		0ADE9CFE2391E85E00563B0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ADE9D002391E85E00563B0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		0AF62FAB239ADBA900096E79 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		0AF62FAD239AE4C300096E79 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A06293FF04DA4A45C0DABB39 /* Pods-Spartans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spartans.debug.xcconfig"; path = "Target Support Files/Pods-Spartans/Pods-Spartans.debug.xcconfig"; sourceTree = "<group>"; };
+		B1BD553399BF71D497ADECEF /* Pods_Spartans.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spartans.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4C9522A8298D2859F488CB0 /* Pods-Spartans.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spartans.release.xcconfig"; path = "Target Support Files/Pods-Spartans/Pods-Spartans.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58A2977C3DAC376D5649F8B0 /* Pods_Spartans.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +77,7 @@
 			children = (
 				0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */,
 				0A37F0AA23969E8F00B6DB7C /* CardView.swift */,
+				0AF62FAD239AE4C300096E79 /* CustomTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -78,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				0ADE9CF62391E85D00563B0B /* HomeController.swift */,
+				0AF62FAB239ADBA900096E79 /* RegistrationController.swift */,
+				0A3FCDD9239B45B400BED21A /* Bindable.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -86,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				0A5BA4C02396DF1A00AE06DE /* CardViewModel.swift */,
+				0A3FCDD5239B231C00BED21A /* RegistrationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -95,6 +114,8 @@
 			children = (
 				0ADE9CF12391E85D00563B0B /* Spartans */,
 				0ADE9CF02391E85D00563B0B /* Products */,
+				D9154FD6189E863ECE1F4096 /* Pods */,
+				4597E8CBC9AE6DBCD5424A46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,9 +141,27 @@
 				0ADE9CFB2391E85E00563B0B /* Assets.xcassets */,
 				0ADE9CFD2391E85E00563B0B /* LaunchScreen.storyboard */,
 				0ADE9D002391E85E00563B0B /* Info.plist */,
+				0A3FCDD7239B2CBE00BED21A /* GoogleService-Info.plist */,
 				0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */,
 			);
 			path = Spartans;
+			sourceTree = "<group>";
+		};
+		4597E8CBC9AE6DBCD5424A46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B1BD553399BF71D497ADECEF /* Pods_Spartans.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9154FD6189E863ECE1F4096 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A06293FF04DA4A45C0DABB39 /* Pods-Spartans.debug.xcconfig */,
+				C4C9522A8298D2859F488CB0 /* Pods-Spartans.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0ADE9D032391E85E00563B0B /* Build configuration list for PBXNativeTarget "Spartans" */;
 			buildPhases = (
+				30AFDB8E13DDE085A4BC8551 /* [CP] Check Pods Manifest.lock */,
 				0ADE9CEB2391E85D00563B0B /* Sources */,
 				0ADE9CEC2391E85D00563B0B /* Frameworks */,
 				0ADE9CED2391E85D00563B0B /* Resources */,
+				250662DF717FAAFFCBFDF247 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,18 +226,64 @@
 			files = (
 				0ADE9CFF2391E85E00563B0B /* LaunchScreen.storyboard in Resources */,
 				0ADE9CFC2391E85E00563B0B /* Assets.xcassets in Resources */,
+				0A3FCDD8239B2CBE00BED21A /* GoogleService-Info.plist in Resources */,
 				0ADE9CFA2391E85D00563B0B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		250662DF717FAAFFCBFDF247 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Spartans/Pods-Spartans-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Spartans/Pods-Spartans-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Spartans/Pods-Spartans-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		30AFDB8E13DDE085A4BC8551 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Spartans-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0ADE9CEB2391E85D00563B0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3FCDDA239B45B400BED21A /* Bindable.swift in Sources */,
 				0A37F0AB23969E8F00B6DB7C /* CardView.swift in Sources */,
+				0A3FCDD6239B231C00BED21A /* RegistrationViewModel.swift in Sources */,
+				0AF62FAE239AE4C300096E79 /* CustomTextField.swift in Sources */,
 				0ADE9D072391E8F500563B0B /* BaseTabBarController.swift in Sources */,
 				0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */,
 				0ADE9CF72391E85D00563B0B /* HomeController.swift in Sources */,
@@ -204,6 +291,7 @@
 				0ADE9CF32391E85D00563B0B /* AppDelegate.swift in Sources */,
 				0ADE9CF52391E85D00563B0B /* SceneDelegate.swift in Sources */,
 				0A5BA4C12396DF1A00AE06DE /* CardViewModel.swift in Sources */,
+				0AF62FAC239ADBA900096E79 /* RegistrationController.swift in Sources */,
 				0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +434,7 @@
 		};
 		0ADE9D042391E85E00563B0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A06293FF04DA4A45C0DABB39 /* Pods-Spartans.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -364,6 +453,7 @@
 		};
 		0ADE9D052391E85E00563B0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4C9522A8298D2859F488CB0 /* Pods-Spartans.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

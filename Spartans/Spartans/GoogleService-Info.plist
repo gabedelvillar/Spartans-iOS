@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1042593278917-3lfffnvs3im07g3hu7dcfrn77emhsu08.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1042593278917-3lfffnvs3im07g3hu7dcfrn77emhsu08</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDt8ZjqBbi6UVqMZ1MbY6JkCLn9a87CuF8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1042593278917</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gabrieldelvillardesantiago.Spartans.Spartans</string>
+	<key>PROJECT_ID</key>
+	<string>spartans-38ac2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spartans-38ac2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1042593278917:ios:5af0c94ce10c7e8e17b9ac</string>
+	<key>DATABASE_URL</key>
+	<string>https://spartans-38ac2.firebaseio.com</string>
+</dict>
+</plist>
