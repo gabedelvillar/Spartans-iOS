@@ -7,47 +7,79 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
 
 class HomeController: UIViewController {
     
     let cardsDeckView = UIView()
-    let buttonsStackView = HomeBottomControlsStackView()
+    let bottomControls = HomeBottomControlsStackView()
     
-    let cardViewModels: [CardViewModel] = {
-        let producers = [
-            User(name: "Kelly", age: 23, activitty: "Endurance Training", imageNames: ["kelly1", "kelly2", "kelly3"]),
-            User(name: "Jane", age: 18, activitty: "Powerlifting", imageNames: ["jane1, jane2, jane3"])
-        ] as [ProduceCardViewModel]
-        
-        let viewModels = producers.map({return $0.toCardViewModel()})
-        
-        return viewModels
-    }()
-    
-    
+    var cardViewModels = [CardViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setupLayout()
         
-        setupDummyCards()
+        setupFirestoreUserCards()
+        fetchUsersFromFirestore()
     }
     
     // MARK:- Fileprivate
     
-    fileprivate func setupDummyCards(){
+    var lastFetchUser: User?
+    
+    
+    fileprivate func fetchUsersFromFirestore() {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Fetching Users"
+        hud.show(in: view)
+        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchUser?.uid ?? ""]).limit(to: 10)
+//        let query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: "Endurance Trainning")
+        query.getDocuments { (snapshot, err) in
+            hud.dismiss()
+            if let err = err {
+                print("Failed to fetch users: ", err)
+                return
+            }
+            
+            snapshot?.documents.forEach({ (documentSnapshot) in
+                let userDictionary = documentSnapshot.data()
+                let user = User(dictionary: userDictionary)
+                self.cardViewModels.append(user.toCardViewModel())
+                self.lastFetchUser = user
+                self.setupCardFromUser(user: user)
+            })
+            
+        }
+    }
+    
+    fileprivate func setupCardFromUser(user: User) {
+        let cardView = CardView(frame: .zero)
+        cardView.cardViewModel = user.toCardViewModel()
+        cardsDeckView.addSubview(cardView)
+        cardView.fillSuperview()
+    }
+    
+    
+    @objc fileprivate func handleRefresh(){
+        fetchUsersFromFirestore()
+    }
+    
+    fileprivate func setupFirestoreUserCards(){
         cardViewModels.forEach { (cardViewModel) in
             let cardView = CardView(frame: .zero)
             cardView.cardViewModel = cardViewModel
             cardsDeckView.addSubview(cardView)
+            cardsDeckView.sendSubviewToBack(cardView)
             cardView.fillSuperview()
         }
     }
     
     fileprivate func setupLayout() {
-        let overallStackView = UIStackView(arrangedSubviews: [cardsDeckView, buttonsStackView])
+        let overallStackView = UIStackView(arrangedSubviews: [cardsDeckView, bottomControls])
         
         overallStackView.axis = .vertical
         

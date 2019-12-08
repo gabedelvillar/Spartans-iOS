@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let windowScene = scene as? UIWindowScene {
             window = UIWindow(windowScene: windowScene)
-            window?.rootViewController = RegistrationController()
+            window?.rootViewController = BaseTabBarController()
             window?.makeKeyAndVisible()
         }
         

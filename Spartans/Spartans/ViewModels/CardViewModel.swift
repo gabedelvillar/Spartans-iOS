@@ -26,13 +26,13 @@ class CardViewModel {
     
     fileprivate var imageIndex = 0{
         didSet {
-            let imageName = imageNames[imageIndex]
-            let image = UIImage(named: imageName)
-            imageIndexObserver?(imageIndex, image ?? UIImage())
+            let imageUrl = imageNames[imageIndex]
+//            let image = UIImage(named: imageName)
+            imageIndexObserver?(imageIndex, imageUrl)
         }
     }
     // reactive programming - you want to expose a propery on your view model object such that you can notify an external class such as your cardview of all the chnages of your views state
-    var imageIndexObserver: ((Int, UIImage?) -> ())?
+    var imageIndexObserver: ((Int, String?) -> ())?
     
     func advanceToNextPhoto(){
         
