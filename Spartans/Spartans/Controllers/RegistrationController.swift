@@ -79,6 +79,15 @@ class RegistrationController: UIViewController {
     }()
     
     
+   let goToLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Go to Login", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        button.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
+        return button
+    }()
+    
     
     // MARK:- Lifecycle Methods
 
@@ -132,6 +141,11 @@ class RegistrationController: UIViewController {
     
     // MARK:- Fileprivate
     
+    @objc fileprivate func handleGoToLogin(){
+        let loginController = LoginController()
+        navigationController?.pushViewController(loginController, animated: true)
+    }
+    
     fileprivate func setupRegistrationViewModelObserver(){
         
         registrationViewModel.bindableIsFormValid.bind { [unowned self ](isFormValid) in
@@ -153,7 +167,7 @@ class RegistrationController: UIViewController {
         
         registrationViewModel.bindableRegistering.bind {[unowned self] (isRegistering) in
             if isRegistering == true {
-                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.textLabel.text = "Registering..."
                 self.registeringHUD.show(in: self.view)
             } else {
                 self.registeringHUD.dismiss()
@@ -173,6 +187,7 @@ class RegistrationController: UIViewController {
             }
             
             print("Finished registering our user")
+            self.dismiss(animated: true)
         }
     }
     
@@ -239,6 +254,7 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
        view.addSubview(overallStackView)
         overallStackView.axis = .vertical
         selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
@@ -246,6 +262,9 @@ class RegistrationController: UIViewController {
         overallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         
         overallStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     fileprivate func setupGradientLayer(){

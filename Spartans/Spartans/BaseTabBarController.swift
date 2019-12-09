@@ -12,12 +12,27 @@ class BaseTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let homeController = HomeController()
+        let homeNavController = UINavigationController(rootViewController: homeController)
+        homeNavController.navigationBar.prefersLargeTitles = true
+        homeController.navigationItem.title = "Spartans"
+        homeController.view.backgroundColor = .white
+        homeNavController.tabBarItem.title = "Spartans"
+        
+        let settingsController = SettingsController()
+        settingsController.delegate = homeController
+        let settingsNavController = UINavigationController(rootViewController: settingsController)
+        settingsNavController.navigationBar.prefersLargeTitles = true
+        settingsController.navigationItem.title = "Settings"
+        settingsController.view.backgroundColor = .white
+        settingsNavController.tabBarItem.title = "Settings"
+        
         viewControllers = [
             
-            createNavController(viewController: HomeController(), title: "Spartans"),
+            homeNavController,
             createNavController(viewController: UIViewController(), title: "Messages"),
             createNavController(viewController: UIViewController(), title: "Activity"),
-            createNavController(viewController: UIViewController(), title: "Settings")
+            settingsNavController
             
         ]
     }

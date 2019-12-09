@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
+
 class HomeController: UIViewController {
+    
     
     let cardsDeckView = UIView()
     let bottomControls = HomeBottomControlsStackView()
@@ -23,23 +25,58 @@ class HomeController: UIViewController {
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         setupLayout()
         
-        setupFirestoreUserCards()
-        fetchUsersFromFirestore()
+        fetchCurrentUser()
+        
+//        setupFirestoreUserCards()
+
+    }
+
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        // kick out the user when they logout
+        if Auth.auth().currentUser == nil{
+            let loginController = LoginController()
+            loginController.delegate = self
+            let navController = UINavigationController(rootViewController: loginController)
+            navController.modalPresentationStyle = .fullScreen
+            present(navController, animated: true)
+        }
     }
     
     // MARK:- Fileprivate
     
     var lastFetchUser: User?
     
+    fileprivate var user: User?
+    fileprivate let hud = JGProgressHUD(style: .dark)
+    
+    
+    fileprivate func fetchCurrentUser(){
+        hud.textLabel.text = "Loading"
+        hud.show(in: view)
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
+        
+        Firestore.firestore().fetchCurrentUser { (user, err) in
+            if let err = err{
+                print("Failed to fetch user", err)
+                self.hud.dismiss()
+                return
+            }
+            
+            self.user = user
+            self.fetchUsersFromFirestore()
+        }
+       
+    }
     
     fileprivate func fetchUsersFromFirestore() {
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Fetching Users"
-        hud.show(in: view)
-        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchUser?.uid ?? ""]).limit(to: 10)
-//        let query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: "Endurance Trainning")
+        guard let activity = user?.activity else {return}
+        
+       
+        let query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)
         query.getDocuments { (snapshot, err) in
-            hud.dismiss()
+            self.hud.dismiss()
             if let err = err {
                 print("Failed to fetch users: ", err)
                 return
@@ -94,5 +131,22 @@ class HomeController: UIViewController {
     }
 
 
+}
+
+// MARK: Extensions
+
+extension HomeController: SettingsControllerDelegate {
+    func didSaveSettings() {
+        fetchCurrentUser()
+    }
+    
+}
+
+extension HomeController: LoginControllerDelegate {
+    func didFinishLogginIn() {
+        fetchCurrentUser()
+    }
+    
+    
 }
 
