@@ -33,12 +33,11 @@ class HomeController: UIViewController {
 
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         // kick out the user when they logout
         if Auth.auth().currentUser == nil{
-            let loginController = LoginController()
-            loginController.delegate = self
-            let navController = UINavigationController(rootViewController: loginController)
+            let registrationController = RegistrationController()
+            let navController = UINavigationController(rootViewController: registrationController)
             navController.modalPresentationStyle = .fullScreen
             present(navController, animated: true)
         }
@@ -85,9 +84,13 @@ class HomeController: UIViewController {
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
-                self.cardViewModels.append(user.toCardViewModel())
-                self.lastFetchUser = user
-                self.setupCardFromUser(user: user)
+                if user.uid != Auth.auth().currentUser?.uid {
+                    self.setupCardFromUser(user: user)
+                }
+                
+//                self.cardViewModels.append(user.toCardViewModel())
+//                self.lastFetchUser = user
+                
             })
             
         }
@@ -95,8 +98,10 @@ class HomeController: UIViewController {
     
     fileprivate func setupCardFromUser(user: User) {
         let cardView = CardView(frame: .zero)
+        cardView.delegate = self
         cardView.cardViewModel = user.toCardViewModel()
         cardsDeckView.addSubview(cardView)
+        cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
     }
     
@@ -145,6 +150,17 @@ extension HomeController: SettingsControllerDelegate {
 extension HomeController: LoginControllerDelegate {
     func didFinishLogginIn() {
         fetchCurrentUser()
+    }
+    
+
+}
+
+extension HomeController: CardViewDelegate{
+    func showMoreInfo(cardViewModel: CardViewModel) {
+        let cardDetailsController = UserDetailsController()
+        cardDetailsController.cardViewModel = cardViewModel
+        cardDetailsController.modalPresentationStyle = .fullScreen
+        present(cardDetailsController, animated: true)
     }
     
     

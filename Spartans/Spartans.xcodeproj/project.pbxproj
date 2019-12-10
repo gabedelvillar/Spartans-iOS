@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F023938B2200E7A942 /* Extensions+UIView.swift */; };
 		0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */; };
+		0A35845D239EBEDE00281B78 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35845C239EBEDE00281B78 /* UserDetailsController.swift */; };
+		0A35845F239EDC2900281B78 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35845E239EDC2900281B78 /* SwipingPhotosController.swift */; };
 		0A37F0AB23969E8F00B6DB7C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A37F0AA23969E8F00B6DB7C /* CardView.swift */; };
 		0A3FCDD6239B231C00BED21A /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3FCDD5239B231C00BED21A /* RegistrationViewModel.swift */; };
 		0A3FCDD8239B2CBE00BED21A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A3FCDD7239B2CBE00BED21A /* GoogleService-Info.plist */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		0A1359F023938B2200E7A942 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
+		0A35845C239EBEDE00281B78 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
+		0A35845E239EDC2900281B78 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		0A37F0AA23969E8F00B6DB7C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0A3FCDD5239B231C00BED21A /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		0A3FCDD7239B2CBE00BED21A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -97,6 +101,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		0A35845B239EBEC500281B78 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				0A35845C239EBEDE00281B78 /* UserDetailsController.swift */,
+				0A35845E239EDC2900281B78 /* SwipingPhotosController.swift */,
+			);
+			path = UserDetails;
+			sourceTree = "<group>";
+		};
 		0A5BA4BB2396D79300AE06DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +121,7 @@
 		0A5BA4BE2396DE6600AE06DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A35845B239EBEC500281B78 /* UserDetails */,
 				0ADE9CF62391E85D00563B0B /* HomeController.swift */,
 				0AF62FAB239ADBA900096E79 /* RegistrationController.swift */,
 				0A3FCDD9239B45B400BED21A /* Bindable.swift */,
@@ -305,6 +319,7 @@
 				0ADE9D072391E8F500563B0B /* BaseTabBarController.swift in Sources */,
 				0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */,
 				0ADE9CF72391E85D00563B0B /* HomeController.swift in Sources */,
+				0A35845D239EBEDE00281B78 /* UserDetailsController.swift in Sources */,
 				0A5BA4BD2396D7A000AE06DE /* User.swift in Sources */,
 				0ADE9CF32391E85D00563B0B /* AppDelegate.swift in Sources */,
 				0A8D5496239E1D4C0083AD80 /* Firebase+Utils.swift in Sources */,
@@ -317,6 +332,7 @@
 				0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */,
 				0A8D549A239E2C510083AD80 /* LoginViewModel.swift in Sources */,
 				0A8D5492239D92A50083AD80 /* SettingsCell.swift in Sources */,
+				0A35845F239EDC2900281B78 /* SwipingPhotosController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
