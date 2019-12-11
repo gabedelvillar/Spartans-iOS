@@ -19,12 +19,13 @@ class CardView: UIView {
     
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageUrls.first ?? ""
-            // load our image using some kind of url instead
-            if let url = URL(string: imageName){
-                imageView.sd_setImage(with: url)
-                
-            }
+//            let imageName = cardViewModel.imageUrls.first ?? ""
+//            // load our image using some kind of url instead
+//            if let url = URL(string: imageName){
+////                imageView.sd_setImage(with: url)
+//                imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "top_left_profile"), options: .continueInBackground)
+//            }
+            swipingPhotosController.cardViewModel = self.cardViewModel
             
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
@@ -43,7 +44,8 @@ class CardView: UIView {
     
     
     // encapsulation
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly3"))
+//    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly3"))
+    fileprivate let swipingPhotosController = SwipingPhotosController(isCardViewMode: true)
     fileprivate  let gardiantLayer = CAGradientLayer()
     fileprivate let informationLabel = UILabel()
     fileprivate let barsStackView = UIStackView()
@@ -69,9 +71,9 @@ class CardView: UIView {
     
     fileprivate func setupImageIndexObserver(){
         cardViewModel.imageIndexObserver = { [weak self] (idx, imageUrl) in
-            if let url = URL(string: imageUrl ?? "") {
-                 self?.imageView.sd_setImage(with: url)
-            }
+//            if let url = URL(string: imageUrl ?? "") {
+//                 self?.imageView.sd_setImage(with: url)
+//            }
            
             
             self?.barsStackView.arrangedSubviews.forEach { (view) in
@@ -112,13 +114,11 @@ class CardView: UIView {
         layer.cornerRadius = 10
         clipsToBounds = true
         
+        let swipingPhotosView = swipingPhotosController.view!
+        addSubview(swipingPhotosView)
+        swipingPhotosView.fillSuperview()
         
-        
-        imageView.contentMode = .scaleAspectFill
-        addSubview(imageView)
-        imageView.fillSuperview()
-        
-        setupBarsStackView()
+//        setupBarsStackView()
         
         // gradiant layer
         setupGradiantLayer()

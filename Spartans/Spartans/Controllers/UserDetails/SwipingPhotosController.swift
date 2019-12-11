@@ -17,12 +17,24 @@ class SwipingPhotosController: UIPageViewController {
                 return photoController
             })
             
-            setViewControllers([controllers.first!], direction: .forward, animated: true)
+            guard let firstElement = controllers.first else {return}
+            setViewControllers([firstElement], direction: .forward, animated: true)
             setupBarViews()
         }
     }
     
     var controllers = [UIViewController]()
+    
+    fileprivate let isCardViewMode: Bool
+    
+    init(isCardViewMode: Bool = false) {
+        self.isCardViewMode = isCardViewMode
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +42,11 @@ class SwipingPhotosController: UIPageViewController {
         delegate = self
         view.backgroundColor = .white
         
+        if isCardViewMode {
+            disableSwipingAbility()
+        }
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
     
@@ -37,6 +54,35 @@ class SwipingPhotosController: UIPageViewController {
     
     fileprivate let barsStackView = UIStackView(arrangedSubviews: [])
     fileprivate let deselectedBarColor = UIColor(white: 0, alpha: 0.1)
+    
+    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer){
+        guard let currentController = viewControllers?.first else {return}
+        if let index = viewControllers?.firstIndex(of: currentController){
+            barsStackView.arrangedSubviews.forEach({$0.backgroundColor = deselectedBarColor})
+            if gesture.location(in: self.view).x > view.frame.width / 2 {
+                let nextIndex = min(index + 1, controllers.count - 1)
+                let nextController = controllers[nextIndex]
+                setViewControllers([nextController], direction: .forward, animated: false)
+                
+                barsStackView.arrangedSubviews[nextIndex].backgroundColor = .white
+            } else {
+                let prevIndex = max(0, index - 1)
+                let prevController = controllers[prevIndex]
+                setViewControllers([prevController], direction: .forward, animated: false)
+                barsStackView.arrangedSubviews[prevIndex].backgroundColor = .white
+            }
+            
+        }
+        
+    }
+    
+    fileprivate func disableSwipingAbility(){
+        view.subviews.forEach { (view) in
+            if let view = view as? UIScrollView {
+                view.isScrollEnabled = false
+            }
+        }
+    }
     
     fileprivate func setupBarViews(){
         cardViewModel.imageUrls.forEach { (_) in
@@ -51,6 +97,8 @@ class SwipingPhotosController: UIPageViewController {
         barsStackView.spacing = 4
         barsStackView.distribution = .fillEqually
         view.addSubview(barsStackView)
+        
+
         barsStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height:  4))
         
         
@@ -87,31 +135,4 @@ extension SwipingPhotosController: UIPageViewControllerDelegate{
     }
 }
 
-class PhotoController: UIViewController {
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "jane3"))
-    
-    
-    
-    
-    init(imageUrl: String) {
-        if let url = URL(string: imageUrl){
-            imageView.sd_setImage(with: url)
-        }
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-   
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.addSubview(imageView)
-        imageView.fillSuperview()
-        imageView.contentMode = .scaleAspectFill
-    }
-    
-    required init?(coder: NSCoder) {
-           fatalError("init(coder:) has not been implemented")
-       }
-}
+

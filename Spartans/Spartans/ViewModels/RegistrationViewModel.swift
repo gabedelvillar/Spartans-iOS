@@ -86,8 +86,8 @@ class RegistrationViewModel {
         }
     }
     
-    fileprivate func checkFormValidity() {
-        let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false && repassword?.isEmpty == false && password == repassword
+    func checkFormValidity() {
+        let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false && repassword?.isEmpty == false && password == repassword && bindableImage.value != nil
         
         bindableIsFormValid.value = isFormValid
     }

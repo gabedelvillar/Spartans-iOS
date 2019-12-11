@@ -30,6 +30,7 @@
 		0ADE9CFC2391E85E00563B0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE9CFB2391E85E00563B0B /* Assets.xcassets */; };
 		0ADE9CFF2391E85E00563B0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADE9CFD2391E85E00563B0B /* LaunchScreen.storyboard */; };
 		0ADE9D072391E8F500563B0B /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */; };
+		0AEC280A23A025390055D24E /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC280923A025390055D24E /* PhotoController.swift */; };
 		0AF62FAC239ADBA900096E79 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF62FAB239ADBA900096E79 /* RegistrationController.swift */; };
 		0AF62FAE239AE4C300096E79 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF62FAD239AE4C300096E79 /* CustomTextField.swift */; };
 		58A2977C3DAC376D5649F8B0 /* Pods_Spartans.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BD553399BF71D497ADECEF /* Pods_Spartans.framework */; };
@@ -61,6 +62,7 @@
 		0ADE9CFE2391E85E00563B0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ADE9D002391E85E00563B0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		0AEC280923A025390055D24E /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
 		0AF62FAB239ADBA900096E79 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		0AF62FAD239AE4C300096E79 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		A06293FF04DA4A45C0DABB39 /* Pods-Spartans.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spartans.debug.xcconfig"; path = "Target Support Files/Pods-Spartans/Pods-Spartans.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				0A35845C239EBEDE00281B78 /* UserDetailsController.swift */,
 				0A35845E239EDC2900281B78 /* SwipingPhotosController.swift */,
+				0AEC280923A025390055D24E /* PhotoController.swift */,
 			);
 			path = UserDetails;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				0AC72540239D65DA000EF265 /* SettingsController.swift in Sources */,
 				0A8D5498239E2C230083AD80 /* LoginController.swift in Sources */,
 				0A5BA4C12396DF1A00AE06DE /* CardViewModel.swift in Sources */,
+				0AEC280A23A025390055D24E /* PhotoController.swift in Sources */,
 				0AF62FAC239ADBA900096E79 /* RegistrationController.swift in Sources */,
 				0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */,
 				0A8D549A239E2C510083AD80 /* LoginViewModel.swift in Sources */,

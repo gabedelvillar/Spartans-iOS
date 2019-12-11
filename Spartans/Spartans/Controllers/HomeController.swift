@@ -70,10 +70,13 @@ class HomeController: UIViewController {
     }
     
     fileprivate func fetchUsersFromFirestore() {
-        guard let activity = user?.activity else {return}
+
+        var query: Query = Firestore.firestore().collection("users")
         
-       
-        let query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)
+        if let activity = user?.activity{
+            query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)
+        }
+        
         query.getDocuments { (snapshot, err) in
             self.hud.dismiss()
             if let err = err {
