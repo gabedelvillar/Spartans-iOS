@@ -23,6 +23,9 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
+        bottomControls.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        bottomControls.dislikeButton.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
+        
         setupLayout()
         
         fetchCurrentUser()
@@ -50,6 +53,46 @@ class HomeController: UIViewController {
     fileprivate var user: User?
     fileprivate let hud = JGProgressHUD(style: .dark)
     
+    var topCardView: CardView?
+    
+    @objc fileprivate func handleDislike(){
+        
+       performSwipeAnimation(translation: -700, angle: -15)
+    }
+    
+    fileprivate func performSwipeAnimation(translation: CGFloat, angle: CGFloat){
+        let duration = 0.5
+               
+               let translationAnimation = CABasicAnimation(keyPath: "position.x")
+               translationAnimation.toValue = translation
+               translationAnimation.duration = duration
+               translationAnimation.fillMode = .forwards
+               translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+               translationAnimation.isRemovedOnCompletion = false
+               
+               let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+               rotationAnimation.toValue = angle * CGFloat.pi / 180
+               rotationAnimation.duration = duration
+               
+               let cardView = topCardView
+               topCardView = cardView?.nextCardView
+               
+               CATransaction.setCompletionBlock {
+                   cardView?.removeFromSuperview()
+                  
+               }
+               
+               cardView?.layer.add(translationAnimation, forKey: "translation")
+               cardView?.layer.add(rotationAnimation, forKey: "rotation")
+               
+               CATransaction.commit()
+    }
+    
+    @objc fileprivate func handleLike(){
+        
+        performSwipeAnimation(translation: 700, angle: 15)
+        
+    }
     
     fileprivate func fetchCurrentUser(){
         hud.textLabel.text = "Loading"
@@ -77,6 +120,7 @@ class HomeController: UIViewController {
             query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)
         }
         
+        topCardView = nil
         query.getDocuments { (snapshot, err) in
             self.hud.dismiss()
             if let err = err {
@@ -84,33 +128,41 @@ class HomeController: UIViewController {
                 return
             }
             
+            var previousCardView: CardView?
+            
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
                 if user.uid != Auth.auth().currentUser?.uid {
-                    self.setupCardFromUser(user: user)
+                let cardView = self.setupCardFromUser(user: user)
+                    previousCardView?.nextCardView = cardView
+                    previousCardView = cardView
+                    if self.topCardView == nil{
+                        self.topCardView = cardView
+                    }
                 }
-                
-//                self.cardViewModels.append(user.toCardViewModel())
-//                self.lastFetchUser = user
+ 
                 
             })
             
         }
     }
     
-    fileprivate func setupCardFromUser(user: User) {
+    fileprivate func setupCardFromUser(user: User) -> CardView{
         let cardView = CardView(frame: .zero)
         cardView.delegate = self
         cardView.cardViewModel = user.toCardViewModel()
         cardsDeckView.addSubview(cardView)
         cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
+        return cardView
     }
     
     
     @objc fileprivate func handleRefresh(){
-        fetchUsersFromFirestore()
+        if topCardView == nil{
+            fetchUsersFromFirestore()
+        }
     }
     
     fileprivate func setupFirestoreUserCards(){
@@ -155,6 +207,8 @@ extension HomeController: LoginControllerDelegate {
         fetchCurrentUser()
     }
     
+   
+    
 
 }
 
@@ -166,6 +220,9 @@ extension HomeController: CardViewDelegate{
         present(cardDetailsController, animated: true)
     }
     
-    
+    func didRemoveCard(cardView: CardView) {
+        self.topCardView?.removeFromSuperview()
+        self.topCardView = self.topCardView?.nextCardView
+       }
 }
 
