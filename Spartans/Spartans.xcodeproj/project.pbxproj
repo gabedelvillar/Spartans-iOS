@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F023938B2200E7A942 /* Extensions+UIView.swift */; };
+		0A12064B23A212E200DB1B7D /* MatchesMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A12064A23A212E200DB1B7D /* MatchesMessagesController.swift */; };
 		0A1359F42393917800E7A942 /* HomeBottomControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */; };
 		0A35845D239EBEDE00281B78 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35845C239EBEDE00281B78 /* UserDetailsController.swift */; };
 		0A35845F239EDC2900281B78 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A35845E239EDC2900281B78 /* SwipingPhotosController.swift */; };
@@ -37,7 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A1359F023938B2200E7A942 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
+		0A12064A23A212E200DB1B7D /* MatchesMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesMessagesController.swift; sourceTree = "<group>"; };
 		0A1359F32393917800E7A942 /* HomeBottomControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomControlsStackView.swift; sourceTree = "<group>"; };
 		0A35845C239EBEDE00281B78 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
 		0A35845E239EDC2900281B78 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
@@ -82,10 +82,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A12064C23A212FC00DB1B7D /* MatchesMessages */ = {
+			isa = PBXGroup;
+			children = (
+				0A12064A23A212E200DB1B7D /* MatchesMessagesController.swift */,
+			);
+			path = MatchesMessages;
+			sourceTree = "<group>";
+		};
 		0A1359EF23938AF600E7A942 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0A1359F023938B2200E7A942 /* Extensions+UIView.swift */,
 				0A8D5495239E1D4C0083AD80 /* Firebase+Utils.swift */,
 			);
 			path = Extensions;
@@ -124,12 +131,14 @@
 		0A5BA4BE2396DE6600AE06DE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0A12064C23A212FC00DB1B7D /* MatchesMessages */,
 				0A35845B239EBEC500281B78 /* UserDetails */,
 				0ADE9CF62391E85D00563B0B /* HomeController.swift */,
 				0AF62FAB239ADBA900096E79 /* RegistrationController.swift */,
 				0A3FCDD9239B45B400BED21A /* Bindable.swift */,
 				0AC7253F239D65DA000EF265 /* SettingsController.swift */,
 				0A8D5497239E2C230083AD80 /* LoginController.swift */,
+				0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -177,7 +186,6 @@
 				0ADE9CFD2391E85E00563B0B /* LaunchScreen.storyboard */,
 				0ADE9D002391E85E00563B0B /* Info.plist */,
 				0A3FCDD7239B2CBE00BED21A /* GoogleService-Info.plist */,
-				0ADE9D062391E8F500563B0B /* BaseTabBarController.swift */,
 			);
 			path = Spartans;
 			sourceTree = "<group>";
@@ -327,13 +335,13 @@
 				0ADE9CF32391E85D00563B0B /* AppDelegate.swift in Sources */,
 				0A8D5496239E1D4C0083AD80 /* Firebase+Utils.swift in Sources */,
 				0A8D5494239DCA5D0083AD80 /* ActivityPickerCell.swift in Sources */,
+				0A12064B23A212E200DB1B7D /* MatchesMessagesController.swift in Sources */,
 				0ADE9CF52391E85D00563B0B /* SceneDelegate.swift in Sources */,
 				0AC72540239D65DA000EF265 /* SettingsController.swift in Sources */,
 				0A8D5498239E2C230083AD80 /* LoginController.swift in Sources */,
 				0A5BA4C12396DF1A00AE06DE /* CardViewModel.swift in Sources */,
 				0AEC280A23A025390055D24E /* PhotoController.swift in Sources */,
 				0AF62FAC239ADBA900096E79 /* RegistrationController.swift in Sources */,
-				0A1359F123938B2200E7A942 /* Extensions+UIView.swift in Sources */,
 				0A8D549A239E2C510083AD80 /* LoginViewModel.swift in Sources */,
 				0A8D5492239D92A50083AD80 /* SettingsCell.swift in Sources */,
 				0A35845F239EDC2900281B78 /* SwipingPhotosController.swift in Sources */,

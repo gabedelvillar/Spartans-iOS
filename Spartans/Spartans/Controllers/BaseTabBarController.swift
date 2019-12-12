@@ -30,7 +30,7 @@ class BaseTabBarController: UITabBarController {
         viewControllers = [
             
             homeNavController,
-            createNavController(viewController: UIViewController(), title: "Messages"),
+            createNavController(viewController: MatchesMessagesController(), title: "Messages"),
             createNavController(viewController: UIViewController(), title: "Activity"),
             settingsNavController
             

@@ -53,6 +53,8 @@ class HomeController: UIViewController {
     fileprivate var user: User?
     fileprivate let hud = JGProgressHUD(style: .dark)
     
+    var users = [String: User]()
+    
     var topCardView: CardView?
     
     @objc func handleDislike(){
@@ -148,6 +150,26 @@ class HomeController: UIViewController {
                 hud.textLabel.text = "Found a matcb!"
                 hud.show(in: self.view)
                 hud.dismiss(afterDelay: 3)
+                
+                guard let cardUser = self.users[cardUID] else {return}
+                
+                let data = ["name": cardUser.name ?? "", "profileImageUrl":cardUser.imageUrl1 ?? "", "uid": cardUID, "timestamp": Timestamp(date: Date())] as [String : Any]
+                Firestore.firestore().collection("matches_messages").document(uid).collection("matches").document(cardUID).setData(data) { (err) in
+                    if let err = err{
+                        print("Failed to save match info: ", err)
+                        return
+                    }
+                }
+                
+                guard let currentUser = self.user else {return}
+                               
+                let otherMatchdata = ["name": currentUser.name ?? "", "profileImageUrl":currentUser.imageUrl1 ?? "", "uid": cardUID, "timestamp": Timestamp(date: Date())] as [String : Any]
+               Firestore.firestore().collection("matches_messages").document(cardUID).collection("matches").document(uid).setData(otherMatchdata) { (err) in
+                   if let err = err{
+                       print("Failed to save match info: ", err)
+                       return
+                   }
+               }
             }
         }
     }
@@ -208,6 +230,9 @@ class HomeController: UIViewController {
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
+                
+                self.users[user.uid ?? ""] = user
+                
                 let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
                 let hasNotSwipedBefore = self.swipes[user.uid!] == nil
                 if  isNotCurrentUser && hasNotSwipedBefore{
