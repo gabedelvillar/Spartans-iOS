@@ -10,11 +10,12 @@ import LBTATools
 import Firebase
 
 struct Match{
-    let name, profileImageUrl: String
+    let name, profileImageUrl, uid: String
     
     init(dictionary: [String: Any]) {
         self.name = dictionary["name"] as? String ?? ""
         self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+        self.uid = dictionary["uid"] as? String ?? ""
     }
 }
 
@@ -54,6 +55,9 @@ class MatchesMessagesController: LBTAListController<MatchesCell, Match>  {
         
     }
     
+    
+   
+    
     // MARK: Fileprivate
     
     fileprivate func fetchMatches(){
@@ -74,6 +78,13 @@ class MatchesMessagesController: LBTAListController<MatchesCell, Match>  {
             self.items = matches
             self.collectionView.reloadData()
         }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let match = items[indexPath.item]
+        let chatLogController = ChatLogController(match: match)
+        chatLogController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(chatLogController, animated: true)
     }
     
    

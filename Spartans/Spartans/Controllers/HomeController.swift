@@ -163,7 +163,7 @@ class HomeController: UIViewController {
                 
                 guard let currentUser = self.user else {return}
                                
-                let otherMatchdata = ["name": currentUser.name ?? "", "profileImageUrl":currentUser.imageUrl1 ?? "", "uid": cardUID, "timestamp": Timestamp(date: Date())] as [String : Any]
+                let otherMatchdata = ["name": currentUser.name ?? "", "profileImageUrl":currentUser.imageUrl1 ?? "", "uid": currentUser.uid ?? "", "timestamp": Timestamp(date: Date())] as [String : Any]
                Firestore.firestore().collection("matches_messages").document(cardUID).collection("matches").document(uid).setData(otherMatchdata) { (err) in
                    if let err = err{
                        print("Failed to save match info: ", err)
@@ -203,7 +203,7 @@ class HomeController: UIViewController {
                 return
             }
             
-            guard let data = snapshot?.data() as? [String:Int] else {return}
+            let data = snapshot?.data() as? [String:Int] ?? [:]
             self.swipes = data
             self.fetchUsersFromFirestore()
         }
@@ -213,9 +213,9 @@ class HomeController: UIViewController {
 
         var query: Query = Firestore.firestore().collection("users")
         
-        if let activity = user?.activity{
-            query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)
-        }
+//        if let activity = user?.activity{
+//            query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)
+//        }
         
         topCardView = nil
         query.getDocuments { (snapshot, err) in
@@ -235,7 +235,10 @@ class HomeController: UIViewController {
                 
                 let isNotCurrentUser = user.uid != Auth.auth().currentUser?.uid
                 let hasNotSwipedBefore = self.swipes[user.uid!] == nil
-                if  isNotCurrentUser && hasNotSwipedBefore{
+                
+                // MARK: IMPOPRTANT && hasNotSwipedBefore
+                
+                if  isNotCurrentUser {
                 let cardView = self.setupCardFromUser(user: user)
                     previousCardView?.nextCardView = cardView
                     previousCardView = cardView
