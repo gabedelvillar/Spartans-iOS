@@ -37,7 +37,10 @@ class SettingsController: UITableViewController {
         button.imageView?.contentMode = .scaleAspectFill
         return button
     }
-
+    
+    
+    // MARK: Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
@@ -46,6 +49,11 @@ class SettingsController: UITableViewController {
         tableView.keyboardDismissMode = .interactive
        
         
+        //fetchCurrentUser()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchCurrentUser()
     }
     
@@ -54,6 +62,7 @@ class SettingsController: UITableViewController {
     var user: User?
     
     fileprivate func fetchCurrentUser() {
+        print("fetchcurrentuser in settings controller")
         Firestore.firestore().fetchCurrentUser { (user, err) in
             if let err = err {
                 print("Failed to fetch user: ", err)
@@ -113,7 +122,8 @@ class SettingsController: UITableViewController {
             "imageUrl2": user?.imageUrl2 ?? "",
             "imageUrl3": user?.imageUrl3 ?? "",
             "age": user?.age ?? -1,
-            "activity": user?.activity ?? ""
+            "activity": user?.activity ?? "",
+            "bio" : user?.bio ?? ""
             
         ]
         
@@ -158,6 +168,10 @@ class SettingsController: UITableViewController {
         self.user?.age = Int(textField.text ?? "")
     }
     
+    @objc fileprivate func handleBioChange(textField: UITextField){
+        self.user?.bio = textField.text
+    }
+    
 
     // MARK: - Table view data source
     
@@ -169,7 +183,7 @@ class SettingsController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 6
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -179,10 +193,10 @@ class SettingsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 5 {
-            let activityPickerCell = ActivityPickerCell(style: .default, reuseIdentifier: nil)
-            return activityPickerCell
-        }
+//        if indexPath.section == 5 {
+//            let activityPickerCell = ActivityPickerCell(style: .default, reuseIdentifier: nil)
+//            return activityPickerCell
+//        }
         
         let cell = SettingsCell(style: .default, reuseIdentifier: nil)
         
@@ -203,6 +217,8 @@ class SettingsController: UITableViewController {
             }
         default:
             cell.textField.placeholder = "Enter Bio"
+            cell.textField.text = user?.bio
+            cell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
         }
        
         return cell
@@ -311,5 +327,14 @@ extension SettingsController: UIImagePickerControllerDelegate, UINavigationContr
             }
             
         }
+    }
+}
+
+
+// MARK: Extensions
+
+extension SettingsController: LoginControllerDelegate {
+    func didFinishLogginIn() {
+        fetchCurrentUser()
     }
 }

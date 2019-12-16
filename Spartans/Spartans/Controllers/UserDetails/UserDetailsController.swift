@@ -17,7 +17,7 @@ class UserDetailsController: UIViewController {
             infoLabel.attributedText = cardViewModel.attributedString
             
             swipingPhotosController.cardViewModel = cardViewModel
-            
+            bioTextView.text = cardViewModel.bio
         }
     }
     
@@ -49,7 +49,13 @@ class UserDetailsController: UIViewController {
         return button
     }()
     
-    
+    let bioTextView: UITextView = {
+        let tv = UITextView(text: "I currenlty working on training for a 10k. I currently run 5x a week; Tuesda, Thursdau, Saturday I do a 5k, Wednesday I do speed work, and Sunday I run 4mil.", font: .systemFont(ofSize: 16))
+        
+        tv.isEditable = false
+        
+        return tv
+    }()
     
     
     // MARK: Lifecylce Methods
@@ -60,7 +66,7 @@ class UserDetailsController: UIViewController {
         view.backgroundColor = .white
         setupLayout()
         setupVisualEffectView()
-        setupBottomControls()
+        //setupBottomControls()
         
     }
     
@@ -121,6 +127,9 @@ class UserDetailsController: UIViewController {
         
         scrollView.addSubview(dismissButton)
         dismissButton.anchor(top: imageView.bottomAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: -25, left: 0, bottom: 0, right: 24), size: .init(width: 44, height: 44))
+        
+        scrollView.addSubview(bioTextView)
+        bioTextView.anchor(top: infoLabel.bottomAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 16, right: 16))
     }
     
     @objc fileprivate func handleDismiss() {

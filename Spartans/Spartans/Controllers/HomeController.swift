@@ -28,10 +28,15 @@ class HomeController: UIViewController {
         
         setupLayout()
         
-        fetchCurrentUser()
+        //fetchCurrentUser()
         
-//        setupFirestoreUserCards()
 
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchCurrentUser()
     }
 
     
@@ -147,7 +152,7 @@ class HomeController: UIViewController {
             if hasMatched {
                 print("has matched")
                 let hud = JGProgressHUD(style: .dark)
-                hud.textLabel.text = "Found a matcb!"
+                hud.textLabel.text = "Found a match!"
                 hud.show(in: self.view)
                 hud.dismiss(afterDelay: 3)
                 
@@ -175,6 +180,7 @@ class HomeController: UIViewController {
     }
     
     fileprivate func fetchCurrentUser(){
+        print("fetchcurrent user in homecontroller")
         hud.textLabel.text = "Loading"
         hud.show(in: view)
         cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
@@ -211,7 +217,7 @@ class HomeController: UIViewController {
     
     fileprivate func fetchUsersFromFirestore() {
 
-        var query: Query = Firestore.firestore().collection("users")
+        let query: Query = Firestore.firestore().collection("users")
         
 //        if let activity = user?.activity{
 //            query = Firestore.firestore().collection("users").whereField("activity", isEqualTo: activity)

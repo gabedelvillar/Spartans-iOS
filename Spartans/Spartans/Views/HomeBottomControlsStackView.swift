@@ -30,7 +30,7 @@ class HomeBottomControlsStackView: UIStackView {
         distribution = .fillEqually
         heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        [refreshButton, dislikeButton, superLikeButton, likeButton, specialButton].forEach { (button) in
+        [refreshButton, dislikeButton, likeButton].forEach { (button) in
             self.addArrangedSubview(button)
         }
     }

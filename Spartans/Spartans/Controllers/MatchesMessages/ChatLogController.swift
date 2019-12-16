@@ -44,10 +44,11 @@ class ChatLogController: LBTAListController<MessageCell, Message> {
         return true
     }
     
+    var currentUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchCurrentUser()
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
         
        fetchMessages()
@@ -69,6 +70,10 @@ class ChatLogController: LBTAListController<MessageCell, Message> {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.tabBarController?.tabBar.isHidden = false
+        
+        if isMovingFromParent {
+            listener?.remove()
+        }
     }
     
     
@@ -76,15 +81,29 @@ class ChatLogController: LBTAListController<MessageCell, Message> {
     
     // MARK: Fileprivate
     
+    fileprivate func fetchCurrentUser(){
+        Firestore.firestore().collection("users").document(Auth.auth().currentUser?.uid ?? "").getDocument { (snapshot, err) in
+            if let err = err {
+                print("Failed to fetch user: ", err)
+                return
+            }
+            
+            let data = snapshot?.data() ?? [:]
+            self.currentUser = User(dictionary: data)
+        }
+    }
+    
     @objc fileprivate func handleKeyboardShow(){
         self.collectionView.scrollToItem(at: [0, items.count - 1], at: .bottom, animated: true)
     }
+    
+    var listener: ListenerRegistration?
     
     @objc fileprivate func fetchMessages(){
         guard let currentUserId = Auth.auth().currentUser?.uid else {return}
         let query = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid).order(by: "timestamp")
         
-        query.addSnapshotListener { (querySnapshot, err) in
+        listener = query.addSnapshotListener { (querySnapshot, err) in
             if let err = err{
                 print("Failed to fetch messages: ", err)
                 return
@@ -106,6 +125,39 @@ class ChatLogController: LBTAListController<MessageCell, Message> {
     }
     
     @objc fileprivate func handleSend(){
+        
+        saveToFromMessages()
+        saveToFromRecentMessages()
+        
+    }
+    
+    fileprivate func saveToFromRecentMessages(){
+        guard let currentUserId = Auth.auth().currentUser?.uid else {return}
+        
+        let data = ["text":customInputView.messageView.text ?? "", "name":match.name, "profileImageUrl":match.profileImageUrl, "timestamp": Timestamp(date: Date()), "uid": match.uid] as [String : Any]
+        
+        Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages").document(match.uid).setData(data) { (err) in
+            if let err = err{
+                print("Failed to save to from recent message: ", err)
+                return
+            }
+            
+            print("Saved recent message")
+            
+        }
+        
+        // save the other direction
+        
+        guard let currentUser = self.currentUser else {return}
+        
+        let toData = ["text":customInputView.messageView.text ?? "", "name":currentUser.name ?? "", "profileImageUrl":currentUser.imageUrl1 ?? "", "timestamp": Timestamp(date: Date()), "uid": currentUser.uid ?? ""] as [String : Any]
+        
+        
+        Firestore.firestore().collection("matches_messages").document(match.uid).collection("recent_messages").document(currentUserId).setData(toData)
+        
+    }
+    
+    fileprivate func saveToFromMessages() {
         guard let currentUserId = Auth.auth().currentUser?.uid else {return}
         let collection = Firestore.firestore().collection("matches_messages").document(currentUserId).collection(match.uid)
         
@@ -135,7 +187,7 @@ class ChatLogController: LBTAListController<MessageCell, Message> {
             self.customInputView.messageView.text = nil
             self.customInputView.placeHolderLabel.isHidden = false
         }
-        
+
     }
     
     @objc fileprivate func handleBack(){
