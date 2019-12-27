@@ -60,5 +60,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Spartans would like to access your activty data to present it to you.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Spartans would like to access your activty data to present it to you.</string>
 </dict>
 </plist>

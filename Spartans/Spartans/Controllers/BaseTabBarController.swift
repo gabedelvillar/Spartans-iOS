@@ -27,11 +27,12 @@ class BaseTabBarController: UITabBarController {
         settingsController.view.backgroundColor = .white
         settingsNavController.tabBarItem.title = "Settings"
         
+        
         viewControllers = [
             
             homeNavController,
             createNavController(viewController: MatchesMessagesController(), title: "Messages"),
-            createNavController(viewController: UIViewController(), title: "Activity"),
+            createNavController(viewController: ActivityController(), title: "Activity"),
             settingsNavController
             
         ]
@@ -41,7 +42,7 @@ class BaseTabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: viewController)
         navController.navigationBar.prefersLargeTitles = true
         viewController.navigationItem.title = title
-        viewController.view.backgroundColor = .white
+        viewController.view.backgroundColor = .gray
         navController.tabBarItem.title = title
         
         return navController
